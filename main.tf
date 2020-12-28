@@ -533,11 +533,12 @@ resource "aws_elastic_beanstalk_environment" "default" {
 
   dynamic "setting" {
     for_each = local.elb_settings_final
+    #for_each = var.rolling_update_type == "Immutable" ? [] : [1]
     content {
       namespace = setting.value["namespace"]
       name      = setting.value["name"]
       value     = setting.value["value"]
-      resource  = ""
+      resource  = "" 
     }
   }
 
@@ -784,56 +785,69 @@ resource "aws_elastic_beanstalk_environment" "default" {
 
   ###=========================== Autoscale trigger ========================== ###
 
-
-  #setting {
-  #  namespace = "aws:autoscaling:trigger"
-  #  name      = "MeasureName"
-  #  value     = var.autoscale_measure_name
-  #  resource  = ""
-  #}
-
-  #setting {
-  #  namespace = "aws:autoscaling:trigger"
-  #  name      = "Statistic"
-  #  value     = var.autoscale_statistic
-  #  resource  = ""
-  #}
-
-  #setting {
-  #  namespace = "aws:autoscaling:trigger"
-  #  name      = "Unit"
-  #  value     = var.autoscale_unit
-  #  resource  = ""
-  #}
-
-  #setting {
-  #  namespace = "aws:autoscaling:trigger"
-  #  name      = "LowerThreshold"
-  #  value     = var.autoscale_lower_bound
-  #  resource  = ""
-  #}
-
-  #setting {
-  #  namespace = "aws:autoscaling:trigger"
-  #  name      = "LowerBreachScaleIncrement"
-  #  value     = var.autoscale_lower_increment
-  #  resource  = ""
-  #}
-
-  #setting {
-  #  namespace = "aws:autoscaling:trigger"
-  #  name      = "UpperThreshold"
-  #  value     = var.autoscale_upper_bound
-  #  resource  = ""
-  #}
-
-  #setting {
-  #  namespace = "aws:autoscaling:trigger"
-  #  name      = "UpperBreachScaleIncrement"
-  #  value     = var.autoscale_upper_increment
-  #  resource  = ""
-  #}
-
+  dynamic "setting" {
+    for_each = var.rolling_update_type == "Immutable" ? [] : [1]
+      content {
+        namespace = "aws:autoscaling:trigger"
+        name      = "MeasureName"
+        value     = var.autoscale_measure_name
+        resource  = ""
+   }
+  }
+  dynamic "setting" {
+    for_each = var.rolling_update_type == "Immutable" ? [] : [1]
+      content {
+        namespace = "aws:autoscaling:trigger"
+        name      = "Statistic"
+        value     = var.autoscale_statistic
+        resource  = ""
+   }
+  }
+  dynamic "setting" {
+    for_each = var.rolling_update_type == "Immutable" ? [] : [1]
+      content {
+        namespace = "aws:autoscaling:trigger"
+        name      = "Unit"
+        value     = var.autoscale_unit
+        resource  = ""
+   }
+  }
+  dynamic "setting" {
+    for_each = var.rolling_update_type == "Immutable" ? [] : [1]
+      content {
+        namespace = "aws:autoscaling:trigger"
+        name      = "LowerThreshold"
+        value     = var.autoscale_lower_bound
+        resource  = ""
+   }
+  }
+  dynamic "setting" {
+    for_each = var.rolling_update_type == "Immutable" ? [] : [1]
+      content {
+        namespace = "aws:autoscaling:trigger"
+        name      = "LowerBreachScaleIncrement"
+        value     = var.autoscale_lower_increment
+        resource  = ""
+   }
+  }
+  dynamic "setting" {
+    for_each = var.rolling_update_type == "Immutable" ? [] : [1]
+      content {
+        namespace = "aws:autoscaling:trigger"
+        name      = "UpperThreshold"
+        value     = var.autoscale_upper_bound
+        resource  = ""
+   }
+  }
+  dynamic "setting" {
+    for_each = var.rolling_update_type == "Immutable" ? [] : [1]
+      content {
+        namespace = "aws:autoscaling:trigger"
+        name      = "UpperBreachScaleIncrement"
+        value     = var.autoscale_upper_increment
+        resource  = ""
+   }
+  }
   ###=========================== Logging ========================== ###
 
   setting {
