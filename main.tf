@@ -498,12 +498,12 @@ locals {
     }
   ]
 
-  immutable_settings =[
+  immutable_settings = [
     {
       namespace = "aws:ec2:vpc"
       name      = "ELBScheme"
-      value     =  var.elb_scheme
-    }, 
+      value     = var.elb_scheme
+    },
     {
       namespace = "aws:ec2:vpc"
       name      = "ELBSubnets"
@@ -537,7 +537,7 @@ resource "aws_elastic_beanstalk_environment" "default" {
       namespace = setting.value["namespace"]
       name      = setting.value["name"]
       value     = setting.value["value"]
-      resource  = "" 
+      resource  = ""
     }
   }
 
@@ -786,66 +786,66 @@ resource "aws_elastic_beanstalk_environment" "default" {
 
   dynamic "setting" {
     for_each = var.rolling_update_type == "Immutable" ? [] : [1]
-      content {
-        namespace = "aws:autoscaling:trigger"
-        name      = "MeasureName"
-        value     = var.autoscale_measure_name
-        resource  = ""
-   }
+    content {
+      namespace = "aws:autoscaling:trigger"
+      name      = "MeasureName"
+      value     = var.autoscale_measure_name
+      resource  = ""
+    }
   }
   dynamic "setting" {
     for_each = var.rolling_update_type == "Immutable" ? [] : [1]
-      content {
-        namespace = "aws:autoscaling:trigger"
-        name      = "Statistic"
-        value     = var.autoscale_statistic
-        resource  = ""
-   }
+    content {
+      namespace = "aws:autoscaling:trigger"
+      name      = "Statistic"
+      value     = var.autoscale_statistic
+      resource  = ""
+    }
   }
   dynamic "setting" {
     for_each = var.rolling_update_type == "Immutable" ? [] : [1]
-      content {
-        namespace = "aws:autoscaling:trigger"
-        name      = "Unit"
-        value     = var.autoscale_unit
-        resource  = ""
-   }
+    content {
+      namespace = "aws:autoscaling:trigger"
+      name      = "Unit"
+      value     = var.autoscale_unit
+      resource  = ""
+    }
   }
   dynamic "setting" {
     for_each = var.rolling_update_type == "Immutable" ? [] : [1]
-      content {
-        namespace = "aws:autoscaling:trigger"
-        name      = "LowerThreshold"
-        value     = var.autoscale_lower_bound
-        resource  = ""
-   }
+    content {
+      namespace = "aws:autoscaling:trigger"
+      name      = "LowerThreshold"
+      value     = var.autoscale_lower_bound
+      resource  = ""
+    }
   }
   dynamic "setting" {
     for_each = var.rolling_update_type == "Immutable" ? [] : [1]
-      content {
-        namespace = "aws:autoscaling:trigger"
-        name      = "LowerBreachScaleIncrement"
-        value     = var.autoscale_lower_increment
-        resource  = ""
-   }
+    content {
+      namespace = "aws:autoscaling:trigger"
+      name      = "LowerBreachScaleIncrement"
+      value     = var.autoscale_lower_increment
+      resource  = ""
+    }
   }
   dynamic "setting" {
     for_each = var.rolling_update_type == "Immutable" ? [] : [1]
-      content {
-        namespace = "aws:autoscaling:trigger"
-        name      = "UpperThreshold"
-        value     = var.autoscale_upper_bound
-        resource  = ""
-   }
+    content {
+      namespace = "aws:autoscaling:trigger"
+      name      = "UpperThreshold"
+      value     = var.autoscale_upper_bound
+      resource  = ""
+    }
   }
   dynamic "setting" {
     for_each = var.rolling_update_type == "Immutable" ? [] : [1]
-      content {
-        namespace = "aws:autoscaling:trigger"
-        name      = "UpperBreachScaleIncrement"
-        value     = var.autoscale_upper_increment
-        resource  = ""
-   }
+    content {
+      namespace = "aws:autoscaling:trigger"
+      name      = "UpperBreachScaleIncrement"
+      value     = var.autoscale_upper_increment
+      resource  = ""
+    }
   }
   ###=========================== Logging ========================== ###
 

@@ -505,6 +505,6 @@ variable "prefer_legacy_ssm_policy" {
 
 variable "deployment_policy" {
   type        = string
-  default =  "Rolling"
+  default     = "Immutable"
   description = "Option to use while processing deployment policies"
 }
