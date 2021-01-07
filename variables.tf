@@ -502,3 +502,9 @@ variable "prefer_legacy_ssm_policy" {
   default     = true
   description = "Whether to use AmazonEC2RoleforSSM (will soon be deprecated) or AmazonSSMManagedInstanceCore policy"
 }
+
+variable "deployment_policy" {
+  type        = string
+  default     = "Immutable"
+  description = "Option to use while processing deployment policies"
+}
