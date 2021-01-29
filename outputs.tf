@@ -73,6 +73,11 @@ output "load_balancers" {
   value       = aws_elastic_beanstalk_environment.default.load_balancers
 }
 
+output "elb_endpoint_url" {
+  description = "Elastic Load Balancers EndpointURL in use by this environment"
+  value       = aws_elastic_beanstalk_environment.default.endpoint_url
+}
+
 output "queues" {
   description = "SQS queues in use by this environment"
   value       = aws_elastic_beanstalk_environment.default.queues
